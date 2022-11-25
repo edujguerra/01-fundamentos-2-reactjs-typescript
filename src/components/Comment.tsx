@@ -22,9 +22,8 @@ export function Comment( { content, onDeleteComment }: CommentProps ) {
     return (
         <div className={styles.comment}>
             <Avatar 
-                src='https://media-exp1.licdn.com/dms/image/C4E03AQGGZOo3Fg4aDQ/profile-displayphoto-shrink_800_800/0/1516509752581?e=1674691200&v=beta&t=x5kKe86BjnGl2gU4okqJne-kCPxftwwoTlm1ajJj700'
                 hasBorder={false}
-                alt=""
+                src='https://media-exp1.licdn.com/dms/image/C4E03AQGGZOo3Fg4aDQ/profile-displayphoto-shrink_800_800/0/1516509752581?e=1674691200&v=beta&t=x5kKe86BjnGl2gU4okqJne-kCPxftwwoTlm1ajJj700'                
             />
             <div className={styles.commentBox}>
                 <div className={styles.commentContent}>
