@@ -5,7 +5,26 @@ import { Sidebar } from "./components/Sidebar";
 import './global.css';
 import styles from './App.module.css';
 
-const posts = [
+export interface IAuthor {
+  name: string;
+  role: string;
+  avatarURL: string;
+}
+
+export interface IContent {
+  id: number;
+  type: 'paragraph' | 'link';
+  content: string;
+}
+
+export interface IPost{
+  id: number
+  author: IAuthor;
+  publishedAt: Date;
+  content: IContent[];
+}
+
+const posts: IPost[] = [
   {
     id: 1,
     author: {
@@ -14,13 +33,13 @@ const posts = [
       role: 'MBA,CNPI-T'
     },
     content: [
-        {type: 'paragraph', content: '🛑 Atenção Desenvolvedor(a) 🛑'},
-        {type: 'paragraph', content: 'Você é desenvolvedor (a) e quer aprender na prática como desenvolver as principais habilidades exigidas pelas empresas no mercado para que você seja capaz de trabalhar em projetos de grande porte com total confiança e desenvolvendo do jeito certo?'},
-        {type: 'paragraph', content: 'A imersão Full Cycle 10.0 começa em breve e é um evento 100% online e gratuito focado para quem quer:'},
-        {type: 'paragraph', content: '✔️ Se manter atualizado das novas tecnologias;'},
-        {type: 'paragraph', content: '✔️ Trabalhar em grandes empresas e projetos;'},
-        {type: 'paragraph', content: '✔️ Ser mais valorizado;'},
-        {type: 'link', content: 'jane.design/doctorcare'},
+        {id: 0,type: 'paragraph', content: '🛑 Atenção Desenvolvedor(a) 🛑'},
+        {id: 1,type: 'paragraph', content: 'Você é desenvolvedor (a) e quer aprender na prática como desenvolver as principais habilidades exigidas pelas empresas no mercado para que você seja capaz de trabalhar em projetos de grande porte com total confiança e desenvolvendo do jeito certo?'},
+        {id: 2,type: 'paragraph', content: 'A imersão Full Cycle 10.0 começa em breve e é um evento 100% online e gratuito focado para quem quer:'},
+        {id: 3,type: 'paragraph', content: '✔️ Se manter atualizado das novas tecnologias;'},
+        {id: 4,type: 'paragraph', content: '✔️ Trabalhar em grandes empresas e projetos;'},
+        {id: 5,type: 'paragraph', content: '✔️ Ser mais valorizado;'},
+        {id: 6,type: 'link', content: 'jane.design/doctorcare'},
     ],
     publishedAt: new Date("2022-05-10 20:00:00"),
   },
@@ -32,13 +51,13 @@ const posts = [
       role: 'Developer'
     },
     content: [
-        {type: 'paragraph', content: '🛑 Atenção Desenvolvedor(a) 🛑'},
-        {type: 'paragraph', content: 'Você é desenvolvedor (a) e quer aprender na prática como desenvolver as principais habilidades exigidas pelas empresas no mercado para que você seja capaz de trabalhar em projetos de grande porte com total confiança e desenvolvendo do jeito certo?'},
-        {type: 'paragraph', content: 'A imersão Full Cycle 10.0 começa em breve e é um evento 100% online e gratuito focado para quem quer:'},
-        {type: 'paragraph', content: '✔️ Se manter atualizado das novas tecnologias;'},
-        {type: 'paragraph', content: '✔️ Trabalhar em grandes empresas e projetos;'},
-        {type: 'paragraph', content: '✔️ Ser mais valorizado;'},
-        {type: 'link', content: 'guerra.java/doctorcare'},
+        {id: 0, type: 'paragraph', content: '🛑 Atenção Desenvolvedor(a) 🛑'},
+        {id: 1, type: 'paragraph', content: 'Você é desenvolvedor (a) e quer aprender na prática como desenvolver as principais habilidades exigidas pelas empresas no mercado para que você seja capaz de trabalhar em projetos de grande porte com total confiança e desenvolvendo do jeito certo?'},
+        {id: 2, type: 'paragraph', content: 'A imersão Full Cycle 10.0 começa em breve e é um evento 100% online e gratuito focado para quem quer:'},
+        {id: 3, type: 'paragraph', content: '✔️ Se manter atualizado das novas tecnologias;'},
+        {id: 4, type: 'paragraph', content: '✔️ Trabalhar em grandes empresas e projetos;'},
+        {id: 5, type: 'paragraph', content: '✔️ Ser mais valorizado;'},
+        {id: 6, type: 'link', content: 'guerra.java/doctorcare'},
     ],
     publishedAt: new Date("2022-06-22 20:00:00"),
   },  
@@ -55,9 +74,7 @@ export function App() {
             return (
             <Post 
               key={post.id}
-              author={post.author}
-              content={post.content}
-              publishedAt={post.publishedAt}
+              {... post}
             />)
           })}
         </main>

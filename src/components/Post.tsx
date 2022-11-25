@@ -1,30 +1,13 @@
 import { format, formatDistanceToNow } from 'date-fns';
 import ptBR from 'date-fns/locale/pt-BR'
 import { ChangeEvent, FormEvent, InvalidEvent, useState } from 'react';
+import { IPost } from '../App';
 import { Avatar } from './Avatar';
 import { Comment } from './Comment';
 import styles from './Post.module.css';
 
-
-interface Author {
-    name: string;
-    role: string;
-    avatarURL: string;
-}
-
-interface Content {
-    type: 'paragraph' | 'link';
-    content: string;
-}
-
-interface PostProps{
-    author: Author;
-    publishedAt: Date;
-    content: Content[];
-}
-
-export function Post({ author, publishedAt, content } : PostProps){
-    const [comments, setComments] = useState([
+export function Post({ author, publishedAt, content } : IPost){
+    const [comments, setComments] = useState<string[]>([
         'Post muito bacana'
     ]);    
 
@@ -81,10 +64,10 @@ export function Post({ author, publishedAt, content } : PostProps){
             <div className={styles.content}>
                 {content.map(line => {
                     if (line.type === 'paragraph') {
-                        return <p key={line.content}>{line.content}</p>
+                        return <p key={line.id}>{line.content}</p>
                     } 
                     else if (line.type === 'link') {
-                        return <p key={line.content}><a href="#">{line.content}</a></p>
+                        return <p key={line.id}><a href="#">{line.content}</a></p>
                     }
                 })}                
             </div>
